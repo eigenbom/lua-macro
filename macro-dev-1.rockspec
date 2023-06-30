@@ -15,7 +15,8 @@ description = {
       * Require the macro file in any files you wish to process (`require 'macro'`)
       * Run the script `lua process.lua <input_filename> <output_filename> [environment_table]` over each file
    ]],
-   license = "MIT"
+   license = "MIT",
+   homepage = "https://github.com/eigenbom/lua-macro"
 }
 dependencies = {
    "lua >= 5.1"

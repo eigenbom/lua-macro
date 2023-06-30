@@ -77,7 +77,7 @@ end
 
 ## Usage
 
-Two files are needed from this repository: [src/macro.lua](src/macro.lua) and [bin/process.lua](bin/process.lua). You can manually copy them into your project or use [luarocks](https://luarocks.org/) (TBD).
+Two files are needed from this repository: [src/macro.lua](src/macro.lua) and [bin/process.lua](bin/process.lua). You can manually copy them into your project or use [luarocks].
 
 To use the processor:
 * Require the macro file in any files you wish to process (`require 'macro'`)
