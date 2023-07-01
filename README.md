@@ -8,9 +8,30 @@ Commands such as `eval()` and `expr()` will evaluate an expression and replace i
 
 The macro commands are valid Lua so no additional IDE or language server support is needed. This processor is intentionally simple and uses a naive parser.
 
-## Example: Hello, Pi
 
-Here is a simple example that demonstrates the basic process. For a complete example that covers all macro commands and some example use cases see [test/main.lua](test/main.lua) and [test/main.out.lua](test/main.out.lua).
+## Usage
+
+### Manual Installation
+
+* Manually copy the two files [src/macro.lua](src/macro.lua) and [bin/process.lua](bin/process.lua) into your project
+* Require the macro file in any files you wish to process (`require 'macro'`)
+* Run the script `lua process.lua <input_filename> <output_filename> [environment_table]` over each file
+
+### Luarocks
+
+[Luarocks](https://luarocks.org) can be used to install this script.
+
+Example installation from Windows within a local directory:
+
+* `luarocks install https://raw.githubusercontent.com/eigenbom/lua-macro/master/macro-dev-1.rockspec`
+* Require the macro file in any files you wish to process (`require 'macro'`)
+* Run the script `.\lua_modules\bin\process.lua.bat <input_filename> <output_filename> [environment_table]` over each file
+
+## Examples
+
+Here a two examples that demonstrates the basic process. For a complete example that covers all macro commands and more example use cases see [test/main.lua](test/main.lua) and [test/main.out.lua](test/main.out.lua).
+
+### Hello, Pi
 
 Running the processor with the command `process <input> <output> {N=2}` on an input file:
 
@@ -25,7 +46,7 @@ Will create an output file containing:
 local two_pi = 6.2831853071796
 ```
 
-## Example: Swizzle Maker
+### Swizzle Maker
 
 This example demonstrates generating 27 swizzle functions for all combinations of x, y, and z. When processing an input file:
 
@@ -74,11 +95,3 @@ local function swizzle_zzz(v)
 	return v.z, v.z, v.z
 end
 ```
-
-## Usage
-
-Two files are needed from this repository: [src/macro.lua](src/macro.lua) and [bin/process.lua](bin/process.lua). You can manually copy them into your project or use [luarocks].
-
-To use the processor:
-* Require the macro file in any files you wish to process (`require 'macro'`)
-* Run the script `lua process.lua <input_filename> <output_filename> [environment_table]` over each file
