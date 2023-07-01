@@ -3,11 +3,10 @@ package = "macro"
 version = "dev-1"
 rockspec_format = "3.0"
 source = {
-   url = "."
+   url = "git+https://github.com/eigenbom/lua-macro.git"
 }
 description = {
    summary = "Lua Macro Processor",
-   author = "Benjamin Porter",
    detailed = [[
       This is a file processor that evaluates macro commands within a Lua file and generates an output Lua file.
       
