@@ -17,6 +17,9 @@ require 'macro'
 --| Code within do_() and end_() will execute at processing time
 --| Any print statements will be printed into the output file
 macro.do_()
+-- Can require other files within a macro block
+-- NB: Make it global to access outside of this block
+common = require 'test.macro_common'
 
 -- Declare a variable that will be available to all other macro blocks
 local M = 0
@@ -55,11 +58,12 @@ macro.end_()
 --| The contents of this function are generated
 --| M is evaluated during processing and replaced with a constant in target code
 --| N is evaluated during processing to unroll a for loop
+--| my_math_function is a global macro function defined in macro_common.lua
 ---@param m number
 local function print_sequence(m)
 	macro.do_()
 	for i=1,N do
-		print(string.format('\tprint(%d*m)', i * M))
+		print(string.format('\tprint(%d*m)', my_math_function(i, M)))
 	end
 	macro.end_()
 end
@@ -131,12 +135,8 @@ macro.post_process = function(file_contents)
 	-- Example prettifier: remove double empty lines
 	result = result:gsub('\n\n+', '\n\n')
 
-	-- Example: add header with timestamp
-	local header = [[-----------------------------------------------------------
--- File generated on %s
------------------------------------------------------------
-]]
-	result = string.format(header, os.date('%c')) .. result
+	-- Example: add header from another macro file common.lua
+	result = common.header() .. result
 
 	return result
 end

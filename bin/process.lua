@@ -43,7 +43,7 @@ local file_contents = input_file:read("*a") --[[@as string]]
 local cursor = 1
 local line_number = 1
 
-local function print_code(code, line_number)
+local function print_code(code, line_no)
 	-- split code by line and print each line indented with line number
 	local lines = {}
 	for line in code:gmatch("[^\r\n]+") do
@@ -51,7 +51,7 @@ local function print_code(code, line_number)
 	end
 	print("source: ")
 	for i, line in ipairs(lines) do
-		print(string.format("        %d    \"%s\"", line_number + i - 1, line))
+		print(string.format("        %d    \"%s\"", line_no + i - 1, line))
 	end
 end
 
@@ -63,6 +63,21 @@ local function process_macro(code, options)
 	env.print = function(...)
 		local arg_table = {...}
 		table.insert(macro_output, table.concat(arg_table, "\t"))
+	end
+	env.require = function(require_path)
+		-- Test all paths in package.path
+		local dots_to_slashes = string.gsub(require_path, "%.", "/")
+		local search_paths = string.gsub(package.path,"([^;]*)?([^;]*);","%1" .. dots_to_slashes .. "%2;")
+		for path in string.gmatch(search_paths,"[^;]*") do
+			local chunk = path and loadfile(path, "t", env)
+			if chunk then
+				local result = chunk(path)
+				return result
+			end
+		end
+		
+		-- Fallback
+		return require(require_path)
 	end
 	local macro_fun, error_msg = load(code, input_filename, "t", env)
 	local is_expr = false
