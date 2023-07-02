@@ -38,7 +38,7 @@ for k, v in pairs(_G) do
 end
 env._G = env
 
-local input_file = assert(io.open(input_filename, "r"))
+local input_file = assert(io.open(input_filename, "r"), "Could not open input file: " .. input_filename)
 local file_contents = input_file:read("*a") --[[@as string]]
 local cursor = 1
 local line_number = 1
@@ -352,7 +352,7 @@ do
 
 	-- print output file
 	local output_file = io.open(output_filename, "wb")
-	assert(output_file)
+	assert(output_file, "could not open output file: " .. output_filename)
 	if #replacement_strings>0 then
 		local new_file_contents = {}
 		local prev_cursor = 1
