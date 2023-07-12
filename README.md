@@ -95,3 +95,21 @@ local function swizzle_zzz(v)
 	return v.z, v.z, v.z
 end
 ```
+
+# Tuple Time
+
+The [test/tuple.lua](test/tuple.lua) examples demonstrates a simple compile-time tuple that wraps up multiple values into one variable. For input code like this:
+
+```lua
+local tuple_x = tuple3(1, 0, 0)
+local tuple_y = tuple3(0, 1, 0)
+local tuple_sum = vec3_add(tuple_x, tuple_y)
+```
+
+The script will unroll the tuples and output:
+
+```lua
+local x_1, x_2, x_3 = 1, 0, 0
+local y_1, y_2, y_3 = 0, 1, 0
+local sum_1, sum_2, sum_3 = vec3_add(x_1, x_2, x_3, y_1, y_2, y_3)
+```
