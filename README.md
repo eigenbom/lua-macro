@@ -96,7 +96,7 @@ local function swizzle_zzz(v)
 end
 ```
 
-# Tuple Time
+### Tuple Time
 
 The [test/tuple.lua](test/tuple.lua) examples demonstrates a simple compile-time tuple that wraps up multiple values into one variable. For input code like this:
 
