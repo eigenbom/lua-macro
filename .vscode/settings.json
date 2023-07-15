@@ -2,5 +2,9 @@
 	"Lua.diagnostics.disable": [
 		"lowercase-global",
 		"duplicate-set-field"
+	],
+	"Lua.runtime.plugin": ".vscode/plugin.lua",
+	"Lua.misc.parameters": [
+		"--develop=true"
 	]
 }
