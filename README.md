@@ -29,7 +29,7 @@ Example installation from Windows within a local directory:
 
 ## Examples
 
-Here a two examples that demonstrates the basic process. For a complete example that covers all macro commands and more example use cases see [test/main.lua](test/main.lua) and [test/main.out.lua](test/main.out.lua).
+Here are some examples that demonstrates the basic process. For a complete example that covers all macro commands and more example use cases see [test/main.lua](test/main.lua) and [test/main.out.lua](test/main.out.lua).
 
 ### Hello, Pi
 
@@ -98,7 +98,7 @@ end
 
 ### Tuple Time
 
-The [test/tuple.lua](test/tuple.lua) examples demonstrates a simple compile-time tuple that wraps up multiple values into one variable. For input code like this:
+The [test/tuple.lua](test/tuple.lua) example demonstrates a simple compile-time tuple that wraps up multiple values into one variable. For input code like this:
 
 ```lua
 local tuple_x = tuple3(1, 0, 0)
